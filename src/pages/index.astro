@@ -1,16 +1,60 @@
 ---
+import GlowLayout from "../layouts/BaseLayout.astro";
+import ISSTracker from "../components/ISSTracker.astro";
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<GlowLayout title="Omniversify">
+  <div
+    class="h-full rounded-2xl flex flex-col  justify-center"
+  >
+    <div
+      class="text-1xl font-bold text-teal-300 flex flex-wrap justify-between px-8 py-3 w-full"
+    >
+    <div>Universe: Primodial</div>
+    <div>Galaxy: Milky Way</div>
+    <div>Planet: Earth</div>
+    </div>
+
+    
+    <div
+      class="grow text-6xl font-bold text-teal-300 tracking-wider justify-items-center items-center text-center mt-20"
+    >
+      <h1>Omniversify</h1>
+  </div>
+
+    
+      
+      <ISSTracker>
+        
+    <div class="w-full">
+      <div class="flex flex-wrap gap-10 text-1xl items-start font-bold text-teal-300">
+        <div class="w-27 p-4 self-start">Latitude: <span id="iss-latitude" class="font-semibold"></span></div>
+        <div class="w-27 p-4 self-center">Longitude: <span id="iss-longitude" class="font-semibold"></span></div>
+        <div class="w-37 p-4 self-center">Speed: <span id="iss-speed" class="font-semibold"></span> km/h</div>
+        <div class="w-30 p-4 self-end">Time: <span id="iss-utc-time" class="font-semibold"></span></div>
+      </div>
+    </div>
+      </ISSTracker>
+      
+  </div>
+  </div>
+</GlowLayout>
+
+<script>
+  function updateDisplay() {
+    const latitudeElement = document.getElementById('iss-latitude');
+    const longitudeElement = document.getElementById('iss-longitude');
+    const speedElement = document.getElementById('iss-speed');
+    const utcTimeElement = document.getElementById('iss-utc-time');
+
+    if (latitudeElement && longitudeElement && speedElement && utcTimeElement) {
+      latitudeElement.textContent = (window as any).issLatitude();
+      longitudeElement.textContent = (window as any).issLongitude();
+      speedElement.textContent = (window as any).issSpeed();
+      utcTimeElement.textContent = (window as any).issUTCTime();
+    }
+  }
+
+  setInterval(updateDisplay, 1000);
+</script>

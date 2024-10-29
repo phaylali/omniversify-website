@@ -1,0 +1,43 @@
+---
+import { ISSDataProvider } from '../utils/ISSTracker';
+---
+
+<ISSDataProvider client:load>
+  <slot />
+</ISSDataProvider>
+
+<script>
+  interface ISSDataEvent extends CustomEvent {
+    detail: {
+      latitude: string;
+      longitude: string;
+      speed: string;
+      utcTime: string;
+    };
+  }
+
+  let latitude = '0';
+  let longitude = '0';
+  let speed = '0';
+  let utcTime = '00:00:00';
+
+  function updateISSData() {
+    document.dispatchEvent(new CustomEvent<ISSDataEvent['detail']>('iss-data-update', { 
+      detail: { latitude, longitude, speed, utcTime } 
+    }));
+  }
+
+  document.addEventListener('iss-data-update', ((event: ISSDataEvent) => {
+    latitude = event.detail.latitude;
+    longitude = event.detail.longitude;
+    speed = event.detail.speed;
+    utcTime = event.detail.utcTime;
+    updateISSData();
+  }) as EventListener);
+
+  // Expose the values globally
+  (window as any).issLatitude = () => latitude;
+  (window as any).issLongitude = () => longitude;
+  (window as any).issSpeed = () => speed;
+  (window as any).issUTCTime = () => utcTime;
+</script>
