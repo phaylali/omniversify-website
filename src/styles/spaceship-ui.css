@@ -1,0 +1,80 @@
+/* styles/spaceship-ui.css */
+
+.holographic-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(45deg, #2ECC71, #66FF00);
+    mix-blend-mode: overlay;
+  }
+  
+  .holographic-screen:before,
+  .holographic-screen:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(45deg, #2ECC71, #66FF00);
+    mix-blend-mode: overlay;
+  }
+  
+  .compass {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  
+  .indicator {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .health-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to right, #FF69B4, #FF69B4);
+    mix-blend-mode: overlay;
+  }
+  
+  .health-bar-fill {
+    position: relative;
+    top: -10px;
+    left: 0;
+    width: 50%;
+    height: 10px;
+    background: #8BC34A;
+    animation: health-pulse 2s infinite;
+  }
+  
+  @keyframes health-pulse {
+    0% {
+      width: 50%;
+    }
+    100% {
+      width: 90%;
+    }
+  }
+  https://t3.ftcdn.net/jpg/02/44/02/68/360_F_244026851_p5gHQILPzd6V9byoe6tdCGxrs12F1Bwg.jpg

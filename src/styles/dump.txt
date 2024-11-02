@@ -1,8 +1,0 @@
-<div
-      class="text-1xl font-bold text-teal-300 flex flex-wrap justify-between px-8 py-3 w-full"
-    >
-         <div class="mb-2">Latitude: <span id="iss-latitude" class="font-semibold"></span></div>
-         <div class="mb-2">Longitude: <span id="iss-longitude" class="font-semibold"></span></div>
-         <div class="mb-2">Speed: <span id="iss-speed" class="font-semibold"></span> km/h</div>
-         <div class="mb-2">Time: <span id="iss-utc-time" class="font-semibold"></span></div>
-    </div>

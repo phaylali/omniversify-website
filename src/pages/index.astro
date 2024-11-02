@@ -1,60 +1,25 @@
 ---
-import GlowLayout from "../layouts/BaseLayout.astro";
-import ISSTracker from "../components/ISSTracker.astro";
-
+import GlowingFrame from '../layouts/BaseLayout.astro';
+import Clock from '../components/Clock.astro';
+import Latitude from '../components/Latitude.astro';
+import Longitude from '../components/Longitude.astro';
+import HealthBar from '../components/HealthBar.astro';
+import Speed from '../components/Speed.astro';
 ---
 
-<GlowLayout title="Omniversify">
-  <div
-    class="h-full rounded-2xl flex flex-col  justify-center"
-  >
-    <div
-      class="text-1xl font-bold text-teal-300 flex flex-wrap justify-between px-8 py-3 w-full"
-    >
-    <div>Universe: Primodial</div>
-    <div>Galaxy: Milky Way</div>
-    <div>Planet: Earth</div>
-    </div>
-
+<GlowingFrame title="Omniversify">
+<HealthBar/>
+  <div class="flex flex-wrap justify-items-start items-center text-teal-300 font-bold">
+    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left pl-3  pt-2 text-sm">Unv: Primodial</div>
+    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3 pt-2 text-sm">Glx: Milky Way</div>
+    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3 pt-2 text-sm">Pln: Earth</div>
+    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3 pt-2 text-sm"><Clock/></div>
+    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3  pt-2 text-sm"><Longitude/></div>
+    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3  pt-2 text-sm"><Latitude/></div>
+    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3  pt-2 text-sm">Pwr: 69%</div>
+    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3 pt-2 text-sm"><Speed/></div>
     
-    <div
-      class="grow text-6xl font-bold text-teal-300 tracking-wider justify-items-center items-center text-center mt-20"
-    >
-      <h1>Omniversify</h1>
-  </div>
+</div>
+<canvas id="compass"></canvas>
+</GlowingFrame>
 
-    
-      
-      <ISSTracker>
-        
-    <div class="w-full">
-      <div class="flex flex-wrap gap-4 text-1xl items-start font-bold text-teal-300">
-        <div class="w-[calc(25%-12px)] p-4 self-start">Latitude: <span id="iss-latitude" class="font-semibold"></span></div>
-        <div class="w-[calc(25%-12px)] p-4 self-center">Longitude: <span id="iss-longitude" class="font-semibold"></span></div>
-        <div class="w-[calc(25%-12px)] p-4 self-center">Speed: <span id="iss-speed" class="font-semibold"></span> km/h</div>
-        <div class="w-[calc(25%-12px)] p-4 self-end">Time: <span id="iss-utc-time" class="font-semibold"></span></div>
-      </div>
-    </div>
-      </ISSTracker>
-      
-  </div>
-  </div>
-</GlowLayout>
-
-<script>
-  function updateDisplay() {
-    const latitudeElement = document.getElementById('iss-latitude');
-    const longitudeElement = document.getElementById('iss-longitude');
-    const speedElement = document.getElementById('iss-speed');
-    const utcTimeElement = document.getElementById('iss-utc-time');
-
-    if (latitudeElement && longitudeElement && speedElement && utcTimeElement) {
-      latitudeElement.textContent = (window as any).issLatitude();
-      longitudeElement.textContent = (window as any).issLongitude();
-      speedElement.textContent = (window as any).issSpeed();
-      utcTimeElement.textContent = (window as any).issUTCTime();
-    }
-  }
-
-  setInterval(updateDisplay, 1000);
-</script>
