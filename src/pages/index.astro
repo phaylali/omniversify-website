@@ -1,25 +1,52 @@
 ---
-import GlowingFrame from '../layouts/BaseLayout.astro';
-import Clock from '../components/Clock.astro';
-import Latitude from '../components/Latitude.astro';
-import Longitude from '../components/Longitude.astro';
-import HealthBar from '../components/HealthBar.astro';
-import Speed from '../components/Speed.astro';
+import GlowingFrame from "../layouts/BaseLayout.astro";
+import Clock from "../components/Clock.astro";
+import Latitude from "../components/Latitude.astro";
+import Longitude from "../components/Longitude.astro";
+import HealthBar from "../components/Healthy.astro";
+import Speed from "../components/Speed.astro";
+
+import "../styles/spaceship-ui.css";
+import RadarScript from "../components/RadarScript.astro";
+import HealthyScript from "../components/HealthyScript.astro";
+import MuteScript from "../components/MuteScript.astro";
+import LatitudeScript from "../components/LatitudeScript.astro";
+import LongitudeScript from "../components/LongitudeScript.astro";
+import SoundButton from "../components/SoundButton.astro";
+import LongitudeButton from "../components/LongitudeButton.astro";
+import LatitudeButton from "../components/LatitudeButton.astro";
+import PulseLogo from "../components/PulseLogo.astro";
 ---
 
-<GlowingFrame title="Omniversify">
-<HealthBar/>
-  <div class="flex flex-wrap justify-items-start items-center text-teal-300 font-bold">
-    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left pl-3  pt-2 text-sm">Unv: Primodial</div>
-    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3 pt-2 text-sm">Glx: Milky Way</div>
-    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3 pt-2 text-sm">Pln: Earth</div>
-    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3 pt-2 text-sm"><Clock/></div>
-    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3  pt-2 text-sm"><Longitude/></div>
-    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3  pt-2 text-sm"><Latitude/></div>
-    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3  pt-2 text-sm">Pwr: 69%</div>
-    <div class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 h-6 self-start text-left  pl-3 pt-2 text-sm"><Speed/></div>
-    
-</div>
-<canvas id="compass"></canvas>
-</GlowingFrame>
+<GlowingFrame>
+  <div class="w-full px-4">
+    <HealthBar />
+    <div class="fixed top-12 right-12 flex flex-wrap gap-4 z-50 max-w-[600px] justify-end">
 
+      <LongitudeButton />
+      <LatitudeButton />
+      <SoundButton />
+    </div>
+    <div class="fixed bottom-0 left-0 right-0 z-50">
+      <PulseLogo />
+    </div>
+    <div class="fixed inset-0 z-0 pointer-events-none">
+      <div class="w-full h-full flex justify-center items-center">
+        <div class="circle-container">
+          <div class="circle">
+            <div class="vertical-line"></div>
+            <div class="horizontal-line"></div>
+
+            <div class="radar-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</GlowingFrame>
+<RadarScript />
+<HealthyScript />
+<MuteScript />
+<LatitudeScript />
+<LongitudeScript />

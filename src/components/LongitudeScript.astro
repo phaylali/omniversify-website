@@ -1,0 +1,9 @@
+<script>
+  function updateLongitude() {
+    const longValue = document.getElementById('longitude-value');
+    const randomLong = (Math.random() * 360 - 180).toFixed(3);
+    longValue.textContent = randomLong.padStart(7, '0');
+  }
+
+  setInterval(updateLongitude, 1000);
+</script>

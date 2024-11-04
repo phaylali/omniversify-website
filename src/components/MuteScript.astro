@@ -1,0 +1,23 @@
+<script>
+    let isMuted = false;
+    const soundToggle = document.getElementById('soundToggle');
+    const muteIcon = document.getElementById('muteIcon');
+    const unmuteIcon = document.getElementById('unmuteIcon');
+  
+    soundToggle.addEventListener('click', () => {
+      isMuted = !isMuted;
+      muteIcon.classList.toggle('hidden');
+      unmuteIcon.classList.toggle('hidden');
+      
+      // Set global mute state
+      window.localStorage.setItem('isMuted', isMuted.toString());
+      document.dispatchEvent(new CustomEvent('soundStateChanged', { detail: { isMuted } }));
+    });
+  
+    // Initialize state from localStorage
+    if (window.localStorage.getItem('isMuted') === 'true') {
+      isMuted = true;
+      muteIcon.classList.add('hidden');
+      unmuteIcon.classList.remove('hidden');
+    }
+  </script>

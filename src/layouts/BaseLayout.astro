@@ -1,19 +1,12 @@
 ---
 import Head from "../components/Head.astro";
-import Style from "../components/Style.astro";
+
 const { title } = Astro.props;
 ---
-
-
 <html lang="en">
-  
   <Head title={title}/>
-  
-  <body class="bg-black">
-    
+  <body class="bg-black w-full">
       <slot /> 
-    
-      
   </body>
-  <Style></Style>
+  
 </html>

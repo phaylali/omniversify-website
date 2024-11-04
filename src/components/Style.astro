@@ -1,23 +1,103 @@
 <style>
-  h1 {
-    font-size: 2rem;
+  .circle-container {
+    width: 500px;
+    height: 500px;
+    position: relative;
+
   }
-  .game-over-modal {
-    position: fixed;
+
+  .circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(128, 198, 209, 0.2); /* Teal-300 with 20% opacity */
+    position: relative;
+  }
+
+  .vertical-line,
+  .horizontal-line,
+  .compass-line {
+    position: absolute;
+    background-color: rgba(128, 198, 209, 0.3); /* Teal-300 with 30% opacity */
+  }
+
+  .vertical-line {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+  }
+
+  .horizontal-line {
+    width: 100%;
+    height: 2px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .compass-line {
+    width: 2px;
+    height: 50%;
+    left: 50%;
+    top: 75%;
+    transform-origin:top; /* Change the anchor to the center of the parent circle */
+    transform: translate(-50%, -50%);
+    animation: rotate 5s linear infinite;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  .background-image {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  .electric-background {
+    background-color: #111;
+    background-size: 10px 10px;
+    background-image: linear-gradient(to right, #f00 1px, transparent 1px), linear-gradient(to bottom, #f00 1px, transparent 1px);
+    animation: electric-stutter 0.1s infinite;
   }
 
-  .game-over-modal .content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  @keyframes electric-stutter {
+    0% {
+      background-position: 0 0, 0 0;
+      background-image: linear-gradient(to right, #f00 1px, transparent 1px), linear-gradient(to bottom, #f00 1px, transparent 1px);
+    }
+    20% {
+      background-position: 10px 0, 0 0;
+      background-image: linear-gradient(to right, transparent 1px, #f00 1px), linear-gradient(to bottom, #f00 1px, transparent 1px);
+    }
+    40% {
+      background-position: 10px 0, 10px 0;
+      background-image: linear-gradient(to right, transparent 1px, #f00 1px), linear-gradient(to bottom, transparent 1px, #f00 1px);
+    }
+    60% {
+      background-position: 0 10px, 10px 0;
+      background-image: linear-gradient(to right, #f00 1px, transparent 1px), linear-gradient(to bottom, transparent 1px, #f00 1px);
+    }
+    80% {
+      background-position: 0 10px, 0 10px;
+      background-image: linear-gradient(to right, #f00 1px, transparent 1px), linear-gradient(to bottom, #f00 1px, transparent 1px);
+    }
+    100% {
+      background-position: 0 0, 0 10px;
+      background-image: linear-gradient(to right, #f00 1px, transparent 1px), linear-gradient(to bottom, #f00 1px, transparent 1px);
+    }
   }
 </style>

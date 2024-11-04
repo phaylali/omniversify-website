@@ -1,0 +1,66 @@
+<script>
+  let isMuted = window.localStorage.getItem("isMuted") === "true";
+  document.addEventListener("soundStateChanged", ((e: CustomEvent) => {
+    isMuted = e.detail.isMuted;
+  }) as EventListener);
+
+  // Modify your beep sound play logic
+
+  let currentAngle = 270;
+  const ROTATION_DURATION = 5180;
+  const ROTATION_SPEED = 360 / (ROTATION_DURATION / 16.7);
+
+  // Create audio element for beep sound
+  const beepSound = new Audio("src/sounds/beep.mp3");
+  beepSound.volume = 0.3; // Adjust volume as needed
+
+  function createRadarDot() {
+    const circle = document.querySelector(".circle") as HTMLElement;
+    const size = circle.offsetWidth;
+    const center = size / 2;
+    const minDistance = 10;
+
+    if (Math.random() > 0.5) return;
+
+    const dot = document.createElement("div");
+    dot.className = "radar-dot";
+
+    const isHostile = Math.random() < 0.005;
+
+    if (!isHostile && Math.random() < 0.33) return;
+
+    const radius = isHostile
+      ? Math.random() * (size * 0.2) + size * 0.28
+      : Math.random() * (size * 0.48 - minDistance) + minDistance;
+
+    const angleInRadians = (currentAngle * Math.PI) / 180;
+
+    const x = Math.cos(angleInRadians) * radius + center;
+    const y = Math.sin(angleInRadians) * radius + center;
+
+    dot.style.left = `${x}px`;
+    dot.style.top = `${y}px`;
+
+    if (isHostile) {
+      dot.style.backgroundColor = "rgba(255, 0, 0, 1)";
+      dot.style.width = "6px";
+      dot.style.height = "6px";
+      if (!isMuted) {
+        beepSound.play();
+      }
+    }
+
+    if (!isHostile) dot.style.animation = "blip 2s linear forwards";
+    if (isHostile) dot.style.animation = "blip 4s linear forwards";
+    circle.appendChild(dot);
+    if (!isHostile) setTimeout(() => dot.remove(), 2000);
+    if (isHostile) setTimeout(() => dot.remove(), 4000);
+  }
+
+  function updateCompassAngle() {
+    currentAngle = (currentAngle + ROTATION_SPEED) % 360;
+    createRadarDot();
+  }
+
+  setInterval(updateCompassAngle, 16.7);
+</script>

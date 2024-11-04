@@ -1,0 +1,23 @@
+<script>
+    let health = 100;
+    const healthBar = document.getElementById('health-bar');
+    const healthText = document.getElementById('health-text');
+  
+    // Create initial health strips
+    for (let i = 0; i < 100; i++) {
+      const strip = document.createElement('div');
+      strip.className = 'health-strip';
+      healthBar?.appendChild(strip);
+    }
+  
+    const strips = document.querySelectorAll('.health-strip');
+  
+    setInterval(() => {
+      if (health > 0) {
+        health--;
+        if (healthText) healthText.textContent = `${health} HP`;
+        const strip = strips[health] as HTMLElement;
+        strip.classList.add('lost');
+      }
+    }, 1000);
+  </script>
