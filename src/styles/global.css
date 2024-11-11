@@ -12,5 +12,79 @@
   }
 }
 
+.swiper {
+  padding: 0;
+}
 
+.swiper-button-next,
+.swiper-button-prev {
+  right: 2rem !important;
+  left: auto !important;
+  color: rgb(45 212 191) !important;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1.5rem 1rem;
+  border: 1px solid rgb(45 212 191);
+  border-radius: 0.5rem;
+  width: 2rem !important;
+  transform: rotate(90deg);
+}
 
+.swiper-button-prev {
+  top: 45% !important;
+}
+
+.swiper-button-next {
+  top: 55% !important;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 1.2rem !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(45, 212, 191, 0.2);
+  transform: scale(1.1) rotate(90deg);
+  transition: all 0.3s ease;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
+@keyframes cyber-slide {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100vw);
+  }
+}
+
+.animate-cyber-slide {
+  animation: cyber-slide 8s linear infinite;
+}
+@keyframes radar-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-radar-spin {
+  animation: radar-spin 4s linear infinite;
+}

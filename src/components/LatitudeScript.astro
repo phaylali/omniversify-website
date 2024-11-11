@@ -1,9 +1,0 @@
-<script>
-    function updateLatitude() {
-      const latValue = document.getElementById('latitude-value');
-      const randomLat = (Math.random() * 180 - 90).toFixed(3);
-      latValue.textContent = randomLat.padStart(7, '0');
-    }
-  
-    setInterval(updateLatitude, 1000);
-  </script>

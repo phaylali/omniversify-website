@@ -1,52 +1,31 @@
 ---
-import GlowingFrame from "../layouts/BaseLayout.astro";
-import Clock from "../components/Clock.astro";
-import Latitude from "../components/Latitude.astro";
-import Longitude from "../components/Longitude.astro";
-import HealthBar from "../components/Healthy.astro";
-import Speed from "../components/Speed.astro";
-
-import "../styles/spaceship-ui.css";
-import RadarScript from "../components/RadarScript.astro";
-import HealthyScript from "../components/HealthyScript.astro";
-import MuteScript from "../components/MuteScript.astro";
-import LatitudeScript from "../components/LatitudeScript.astro";
-import LongitudeScript from "../components/LongitudeScript.astro";
-import SoundButton from "../components/SoundButton.astro";
-import LongitudeButton from "../components/LongitudeButton.astro";
-import LatitudeButton from "../components/LatitudeButton.astro";
-import PulseLogo from "../components/PulseLogo.astro";
+import SpaceshipUI from '../components/SpaceshipUI';
+import '../styles/global.css';
 ---
 
-<GlowingFrame>
-  <div class="w-full px-4">
-    <HealthBar />
-    <div class="fixed top-12 right-12 flex flex-wrap gap-4 z-50 max-w-[600px] justify-end">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spaceship Control Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-black min-h-screen">
+    <div class="stars absolute inset-0 z-0"></div>
+    <SpaceshipUI client:load />
+  </body>
+</html>
 
-      <LongitudeButton />
-      <LatitudeButton />
-      <SoundButton />
-    </div>
-    <div class="fixed bottom-0 left-0 right-0 z-50">
-      <PulseLogo />
-    </div>
-    <div class="fixed inset-0 z-0 pointer-events-none">
-      <div class="w-full h-full flex justify-center items-center">
-        <div class="circle-container">
-          <div class="circle">
-            <div class="vertical-line"></div>
-            <div class="horizontal-line"></div>
-
-            <div class="radar-dot"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<style>
+  .stars {
+    background: #000 url("/stars.png") repeat;
+    animation: twinkle 10s linear infinite;
+  }
   
-</GlowingFrame>
-<RadarScript />
-<HealthyScript />
-<MuteScript />
-<LatitudeScript />
-<LongitudeScript />
+  @keyframes twinkle {
+    from {background-position: 0 0;}
+    to {background-position: -1000px 1000px;}
+  }
+</style>
